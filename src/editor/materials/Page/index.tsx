@@ -33,6 +33,7 @@ function Page({ id, name, children }: CommonComponentProps) {
   return (
     <div
       ref={drop}
+      data-component-id={id}
       className="p-[20px] h-[100%] box-border"
       style={{ border: canDrop ? '2px solid blue' : 'none' }}
     >
