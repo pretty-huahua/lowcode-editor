@@ -1,6 +1,6 @@
 import { useDrop } from 'react-dnd';
-import { useComponetsStore } from '../../stores/components';
-import { useComponentConfigStore } from '../../stores/component-config';
+import { useComponetsStore } from '../stores/components';
+import { useComponentConfigStore } from '../stores/component-config';
 
 export function useMaterailDrop(accept: string[], id: number) {
   const { addComponent } = useComponetsStore();
@@ -14,13 +14,14 @@ export function useMaterailDrop(accept: string[], id: number) {
         return;
       }
 
-      const props = componentConfig[item.type].defaultProps;
+      const config = componentConfig[item.type];
 
       addComponent(
         {
           id: new Date().getTime(),
           name: item.type,
-          props,
+          props: config.defaultProps,
+          desc: config.desc,
         },
         id
       );
