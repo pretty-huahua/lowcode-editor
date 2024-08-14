@@ -42,6 +42,8 @@ function SelectedMask({
 
   useEffect(() => {
     const resizeHandler = () => {
+      console.log('监听到了尺寸的变化');
+
       updatePosition();
     };
     window.addEventListener('resize', resizeHandler);
