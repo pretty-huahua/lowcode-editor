@@ -16,6 +16,7 @@ interface State {
   components: Component[];
   curComponentId?: number | null;
   curComponent: Component | null;
+  mode: 'edit' | 'preview';
 }
 
 interface Action {
@@ -28,6 +29,7 @@ interface Action {
     replace?: boolean
   ) => void;
   setCurComponentId: (componentId: number | null) => void;
+  setMode: (mode: State['mode']) => void;
 }
 
 export const useComponetsStore = create<State & Action>()(
@@ -41,6 +43,8 @@ export const useComponetsStore = create<State & Action>()(
           desc: '页面',
         },
       ],
+      mode: 'edit',
+      setMode: (mode) => set({ mode }),
       curComponentId: null,
       curComponent: null,
       setCurComponentId: (componentId) =>

@@ -1,7 +1,10 @@
 import { create } from 'zustand';
-import Container from '../materials/Container';
-import Page from '../materials/Page';
-import Button from '../materials/Button';
+import ContainerDev from '../materials/Container/dev';
+import ContainerProd from '../materials/Container/prod';
+import ButtonDev from '../materials/Button/dev';
+import ButtonProd from '../materials/Button/prod';
+import PageDev from '../materials/Page/dev';
+import PageProd from '../materials/Page/prod';
 import { devtools } from 'zustand/middleware';
 
 export interface ComponentSetter {
@@ -10,13 +13,15 @@ export interface ComponentSetter {
   type: string;
   [key: string]: any;
 }
+
 export interface ComponentConfig {
   name: string;
   defaultProps: Record<string, any>;
   desc: string;
   setter?: ComponentSetter[];
   stylesSetter?: ComponentSetter[];
-  component: any;
+  dev: any;
+  prod: any;
 }
 
 interface State {
@@ -35,7 +40,8 @@ export const useComponentConfigStore = create<State & Action>()(
           name: 'Container',
           defaultProps: {},
           desc: '容器',
-          component: Container,
+          dev: ContainerDev,
+          prod: ContainerProd,
         },
         Button: {
           name: 'Button',
@@ -43,7 +49,6 @@ export const useComponentConfigStore = create<State & Action>()(
             type: 'primary',
             text: '按钮',
           },
-
           setter: [
             {
               name: 'type',
@@ -73,15 +78,15 @@ export const useComponentConfigStore = create<State & Action>()(
             },
           ],
           desc: '按钮',
-
-          component: Button,
+          dev: ButtonDev,
+          prod: ButtonProd,
         },
         Page: {
           name: 'Page',
           defaultProps: {},
           desc: '页面',
-
-          component: Page,
+          dev: PageDev,
+          prod: PageProd,
         },
       },
       registerComponent: (name, componentConfig) =>
@@ -95,6 +100,7 @@ export const useComponentConfigStore = create<State & Action>()(
           };
         }),
     }),
+
     {
       name: 'ComponentConfigStore',
     }
