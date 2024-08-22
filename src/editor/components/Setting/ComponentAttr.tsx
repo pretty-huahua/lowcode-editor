@@ -33,8 +33,6 @@ export function ComponentAttr() {
   }
 
   function valueChange(changeValues: ComponentConfig) {
-    console.log('changeValues', changeValues);
-
     if (curComponentId) {
       updateComponentProps(curComponentId, changeValues);
     }

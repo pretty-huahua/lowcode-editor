@@ -15,7 +15,7 @@ export interface GoToLinkProps {
 
 export function GoToLink(props: GoToLinkProps) {
   const { value: val, defaultValue, onChange } = props;
-  console.log('GoToLink', defaultValue);
+  // console.log('GoToLink', defaultValue);
 
   const { curComponentId } = useComponetsStore();
   const [value, setValue] = useState(defaultValue);
